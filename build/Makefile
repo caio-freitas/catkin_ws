@@ -3975,19 +3975,6 @@ run_tests_gazebo_ros_rostest_test_ros_network_ros_network_disabled.test/fast:
 .PHONY : run_tests_gazebo_ros_rostest_test_ros_network_ros_network_disabled.test/fast
 
 #=============================================================================
-# Target rules for targets named swarm_simulator
-
-# Build rule for target.
-swarm_simulator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 swarm_simulator
-.PHONY : swarm_simulator
-
-# fast build rule for target.
-swarm_simulator/fast:
-	$(MAKE) -f swarm-gazebo-simulator/CMakeFiles/swarm_simulator.dir/build.make swarm-gazebo-simulator/CMakeFiles/swarm_simulator.dir/build
-.PHONY : swarm_simulator/fast
-
-#=============================================================================
 # Target rules for targets named _run_tests_gazebo_plugins_rostest_test_range_range_plugin.test
 
 # Build rule for target.
@@ -5723,7 +5710,6 @@ help:
 	@echo "... clean_test_results_gazebo_ros"
 	@echo "... run_tests_gazebo_ros_rostest_test_ros_network_ros_network_default.test"
 	@echo "... run_tests_gazebo_ros_rostest_test_ros_network_ros_network_disabled.test"
-	@echo "... swarm_simulator"
 	@echo "... _run_tests_gazebo_plugins_rostest_test_range_range_plugin.test"
 	@echo "... run_tests_gazebo_plugins_rostest_test_range_range_plugin.test"
 	@echo "... clean_test_results_gazebo_plugins"

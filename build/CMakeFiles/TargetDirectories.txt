@@ -466,14 +466,6 @@
 /home/caio/catkin_ws/build/gazebo_ros_pkgs/gazebo_ros/test/CMakeFiles/run_tests_gazebo_ros_rostest_test_ros_network_ros_network_disabled.test.dir
 /home/caio/catkin_ws/build/gazebo_ros_pkgs/gazebo_ros/test/CMakeFiles/list_install_components.dir
 /home/caio/catkin_ws/build/gazebo_ros_pkgs/gazebo_ros/test/CMakeFiles/install/strip.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/list_install_components.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/install.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/rebuild_cache.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/edit_cache.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/swarm_simulator.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/test.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/install/strip.dir
-/home/caio/catkin_ws/build/swarm-gazebo-simulator/CMakeFiles/install/local.dir
 /home/caio/catkin_ws/build/gazebo_ros_pkgs/gazebo_plugins/CMakeFiles/edit_cache.dir
 /home/caio/catkin_ws/build/gazebo_ros_pkgs/gazebo_plugins/CMakeFiles/test.dir
 /home/caio/catkin_ws/build/gazebo_ros_pkgs/gazebo_plugins/CMakeFiles/install/strip.dir
