@@ -1,0 +1,8 @@
+prefix=/home/caio/catkin_ws/install
+
+Name: swarm_simulator
+Description: Description of swarm_simulator
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/caio/catkin_ws/install/lib 
+Requires: gazebo_ros roscpp
