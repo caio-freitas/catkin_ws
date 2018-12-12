@@ -1,13 +1,8 @@
+# **SkyRats**
 
-\\\\\\\\   \\ //   \\ // \\\\\\\   \\\\   \\\\\\\\ \\\\\\\\\
-\\         \\//     \//  \\    \   \\\\\\     \\\   \\
-\\\\\\\\   \\\\     //   \\\\\\\  \\\   \\\    \\\   \\\\\\\\
-      \\   \\ \\   //    \\\\\    \\\\\\\\\\    \\\         \\ 
-\\\\\\\\   \\  \\ //     \\  \\  \\\\     \\\\   \\\  \\\\\\\\\
+### Intelligent Drones Team of Polytechnic School of the University of Sao Paulo
 
-Intelligent Drones Team of Polytechnic School of the University of Sao Paulo
-
-Here's how to use our interface:
+#### Here's how to use our interface:
 - it must be in the same directory as the font (STIX-Bold.otf) file
 - there must be a folder with the .png's named "media"
 - run it with rosrun dronecontrol interfaceoo.py OR python interfaceoo.py at the interface directory
