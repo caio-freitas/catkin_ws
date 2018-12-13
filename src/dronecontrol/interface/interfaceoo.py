@@ -3,12 +3,14 @@
 import pygame
 
 import rospy
-from std_msgs.msg import String
-from sensor_msgs.msg import Image
+import mavros_msgs
+from mavros_msgs import srv
 import cv2
 from cv_bridge import CvBridge
 from geometry_msgs.msg import PoseStamped
-from sensor_msgs.msg import BatteryState
+from sensor_msgs.msg import BatteryState, Image
+from std_msgs.msg import String
+from mavros_msgs.msg import State
 import time
 
 pygame.init()
@@ -18,6 +20,9 @@ white = (255,255,255)
 grey = (100,100,100)
 darkGreen = (0,30,0)
 brightGreen = (100, 200, 100)
+brightYellow = (200, 200, 0)
+orange = (250, 160, 0)
+red = (255, 0, 0)
 
 FONT = pygame.font.Font("/home/caio/catkin_ws/src/dronecontrol/interface/STIX-Bold.otf", 18)
 
@@ -39,6 +44,7 @@ cam_pose = (display_width/2 - cam_height/1.2, display_height/2 - cam_height/1.2)
 dataWidth = 320
 dataHeight = 160
 dataRect = [(display_width/2 - dataWidth/2), (display_height-dataHeight-20), dataWidth, dataHeight]
+xc, yc = 675, 500
 #========== Mensagens a serem publicadas no topico rospy ==========
 leftMSG = 'left'
 rightMSG = 'right'
@@ -58,13 +64,15 @@ last_time = init_time
 
 position = PoseStamped()
 battery = BatteryState()
+current_state = State()
 
+click = pygame.mouse.get_pressed()[0]
 clock = pygame.time.Clock()
 mainDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('--Skyrats: eh nois q voa --')
 
-
-
+arming_click = 0
+arm = rospy.ServiceProxy('/mavros/cmd/arming', mavros_msgs.srv.CommandBool)
 def main():
 
     class VisualElement:
@@ -133,6 +141,43 @@ def main():
         pub.publish(str)
         rate.sleep()
 
+    # Circulo para indicar e alterar estado do drone
+    def arming_tool():
+        global arming_click
+        global arm
+        global click
+        mousePos = pygame.mouse.get_pos() # Pega posicao do mouse
+        mousec = pygame.mouse.get_pressed()
+        (x, y) = mousePos
+        new_click = mousec[0]
+        armpose = (xc, yc)
+        if (x < xc + 10) and (x > xc - 10) and (y < yc + 10) and (y > yc - 10):
+            if click == True:
+                arming_click = arming_click + 1
+
+        if arming_click == 0:
+            pygame.draw.circle(mainDisplay, brightGreen, armpose, 20)
+            if current_state.armed == True:
+                arm(False)
+
+        elif arming_click > 0 and arming_click < 3:
+            pygame.draw.circle(mainDisplay, orange, armpose, 20)
+            if current_state.armed == True:
+                arm(False)
+
+        elif arming_click == 3:
+            pygame.draw.circle(mainDisplay, red, armpose, 20)
+            if current_state.armed == False:
+                arm(True)
+
+        elif arming_click > 3 and arming_click < 6:
+            pygame.draw.circle(mainDisplay, black, armpose, 20)
+
+        elif arming_click == 6:
+            pygame.draw.circle(mainDisplay, brightGreen, armpose, 20)
+            arming_click = 0
+
+
     mainDisplay.fill(grey)
     mousePos = pygame.mouse.get_pos()
     #~/catkin_ws/src/
@@ -168,6 +213,13 @@ def main():
         battery.percentage = bat_dat.percentage
         battery.current = bat_dat.current
     battery_subscriber = rospy.Subscriber('/mavros/battery', BatteryState, battery_callback)
+
+
+
+    def state_callback(state_data):
+        global current_state
+        current_state = state_data
+    state_status_subscribe = rospy.Subscriber('/mavros/state', State, state_callback)
 
     #======== IMAGENS ==========#
     cam_image = pygame.Surface((cam_width,cam_height))
@@ -223,6 +275,8 @@ def main():
         x_pose = Text(position.pose.position.x, (380,570))
         y_pose = Text(position.pose.position.y, (380, 585))
         z_pose = Text(position.pose.position.z, (380, 600))
+        arm_text = Text("ARM", (675, 470))
+        arm_text.show()
         position_text.show()
         x_pose.show()
         y_pose.show()
@@ -290,6 +344,7 @@ def main():
                 publish("stop")
             print(event)
         log()
+        arming_tool()
         pygame.display.update()
         clock.tick()
         pygame.event.poll()
