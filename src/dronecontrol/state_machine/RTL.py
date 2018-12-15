@@ -46,15 +46,23 @@ def drone_RTL():
         goal_pose.pose.position.z = z
         local_position_pub.publish(goal_pose)
 
-    set_position(0, 0, 0)
+
     rospy.loginfo("[ROS] SETUP CONCLUIDO")
+    rate.sleep()
+    height = Glocal.pose.position.z
     print("Position: ", Glocal.pose.position.x, Glocal.pose.position.y, Glocal.pose.position.z)
-    while not rospy.is_shutdown():
+    rate.sleep()
+    set_position(0,0,height)
+    while not chegou(Glocal, goal_pose):
+        set_position(0,0,height)
+        print ("[ INFO ] STARING HOME")
         rate.sleep()
-        set_position(0,0,0)
+    set_position(0,0,0)
+    while not chegou(Glocal, goal_pose):
         print(abs(Glocal.pose.position.z - goal_pose.pose.position.z))
         if not chegou(Glocal, goal_pose):
-            print ("COMING HOME")
+            set_position(0,0,0)
+            print ("[ INFO ] LANDING")
             rate.sleep()
         if chegou(Glocal, goal_pose):
             arm(False)

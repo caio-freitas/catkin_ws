@@ -37,7 +37,7 @@ class Circle(smach.State):
 
     def execute(self, userdata):
         rospy.loginfo('Executing state Circle')
-        Circulo.fazCirculo(2)
+        fazCirculo(2)
         return 'done'
 
 
