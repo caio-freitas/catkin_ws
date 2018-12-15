@@ -9,8 +9,8 @@ import time
 
 ################# Objetos ############
 goal_pose = PoseStamped()
-current_state = State()
-Glocal = PoseStamped()
+drone_state = State()
+drone_pose = PoseStamped()
 local = PoseStamped()
 
 def chegou(goal, actual):
@@ -23,16 +23,16 @@ def drone_takeoff(height, duration):
     rate = rospy.Rate(20) # 10hz
     ############## Funcoes de Callback ########
     def state_callback(state_data):
-        global current_state
-        current_state = state_data
+        global drone_state
+        drone_state = state_data
 
 
     def local_callback(local):
-        global Glocal
+        global drone_pose
 
-        Glocal.pose.position.x = local.pose.position.x
-        Glocal.pose.position.y = local.pose.position.y
-        Glocal.pose.position.z = local.pose.position.z
+        drone_pose.pose.position.x = local.pose.position.x
+        drone_pose.pose.position.y = local.pose.position.y
+        drone_pose.pose.position.z = local.pose.position.z
 
 
     ############### Publishers ###############
@@ -63,25 +63,25 @@ def drone_takeoff(height, duration):
 
     init_time = time.time()
     while not rospy.is_shutdown() and time.time() - init_time < duration:
-        #print(Glocal)
-        if current_state != "OFFBOARD" or not current_state.armed:
+        #print(drone_pose)
+        if drone_state != "OFFBOARD" or not drone_state.armed:
             arm(True)
             set_mode(custom_mode = "OFFBOARD")
 
-        if current_state.armed == True:
+        if drone_state.armed == True:
             rospy.loginfo("DRONE ARMED")
 
-        if current_state.mode == "OFFBOARD":
+        if drone_state.mode == "OFFBOARD":
             rospy.loginfo('OFFBOARD mode setted')
-        print(abs(Glocal.pose.position.z - goal_pose.pose.position.z))
-        if not chegou(Glocal, goal_pose):
+        print(abs(drone_pose.pose.position.z - goal_pose.pose.position.z))
+        if not chegou(drone_pose, goal_pose):
             set_position(0, 0, height)
             print("DECOLANDO")
 
         rate.sleep()
 
     print("\nROS FOI DESATIVADO\n")
-    return "succeeded"
+    return "done"
 
 if __name__ == "__main__":
     drone_takeoff()

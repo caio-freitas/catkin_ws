@@ -10,7 +10,7 @@ import time
 
 ################# Objetos ############
 goal_pose = PoseStamped()
-Glocal = PoseStamped()
+drone_pose = PoseStamped()
 
 def chegou(goal, actual):
     if (abs(goal.pose.position.x - actual.pose.position.x) < 0.05) and (abs(goal.pose.position.y - actual.pose.position.y) < 0.05) and (abs(goal.pose.position.z - actual.pose.position.z) < 0.05):
@@ -23,11 +23,11 @@ def drone_RTL():
 
     ############## Funcoes de Callback ########
     def local_callback(local):
-        global Glocal
+        global drone_pose
 
-        Glocal.pose.position.x = local.pose.position.x
-        Glocal.pose.position.y = local.pose.position.y
-        Glocal.pose.position.z = local.pose.position.z
+        drone_pose.pose.position.x = local.pose.position.x
+        drone_pose.pose.position.y = local.pose.position.y
+        drone_pose.pose.position.z = local.pose.position.z
 
     ############### Publishers ###############
     local_position_pub = rospy.Publisher('/mavros/setpoint_position/local', PoseStamped, queue_size = 100)
@@ -49,22 +49,22 @@ def drone_RTL():
 
     rospy.loginfo("[ROS] SETUP CONCLUIDO")
     rate.sleep()
-    height = Glocal.pose.position.z
-    print("Position: ", Glocal.pose.position.x, Glocal.pose.position.y, Glocal.pose.position.z)
+    height = drone_pose.pose.position.z
+    print("Position: ", drone_pose.pose.position.x, drone_pose.pose.position.y, drone_pose.pose.position.z)
     rate.sleep()
     set_position(0,0,height)
-    while not chegou(Glocal, goal_pose):
+    while not chegou(drone_pose, goal_pose):
         set_position(0,0,height)
         print ("[ INFO ] STARING HOME")
         rate.sleep()
     set_position(0,0,0)
-    while not chegou(Glocal, goal_pose):
-        print(abs(Glocal.pose.position.z - goal_pose.pose.position.z))
-        if not chegou(Glocal, goal_pose):
+    while not chegou(drone_pose, goal_pose):
+        print(abs(drone_pose.pose.position.z - goal_pose.pose.position.z))
+        if not chegou(drone_pose, goal_pose):
             set_position(0,0,0)
             print ("[ INFO ] LANDING")
             rate.sleep()
-        if chegou(Glocal, goal_pose):
+        if chegou(drone_pose, goal_pose):
             arm(False)
             break
 

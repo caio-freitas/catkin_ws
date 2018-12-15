@@ -10,7 +10,7 @@ import math
 
 goal_pose = PoseStamped() #Possicao que voce deseja ir
 local = PoseStamped() #capta a posicao q vc esta
-Glocal = PoseStamped() #variavel que recebe a posicao q esta e usaremos para comparacoes
+drone_pose = PoseStamped() #variavel que recebe a posicao q esta e usaremos para comparacoes
 current_state = State() #recebe o estado da maquina
 
 #set_posicao recebe de parametros a posicao que deseja ir e publicara
@@ -38,10 +38,10 @@ def fazCirculo(R):
 
     #local_callback subscrevera e recebera a localizacao atual do DRONE
     def local_callback(local):
-        global Glocal
-        Glocal.pose.position.x = local.pose.position.x
-        Glocal.pose.position.y = local.pose.position.y
-        Glocal.pose.position.z = local.pose.position.z
+        global drone_pose
+        drone_pose.pose.position.x = local.pose.position.x
+        drone_pose.pose.position.y = local.pose.position.y
+        drone_pose.pose.position.z = local.pose.position.z
 
         #Definicao dos publishers e subscribers
     local_position_pub = rospy.Publisher('/mavros/setpoint_position/local', PoseStamped, queue_size = 100)
@@ -62,7 +62,7 @@ def fazCirculo(R):
     while(i<500):
         print("[ INFO ] State Circle")
         theta = (3/4)*math.pi + part
-        #if not chegou(goal_pose, Glocal):
+        #if not chegou(goal_pose, drone_pose):
         set_position(R*math.cos(theta), R + R*math.sin(theta), h)
         part = part + 0.06
         i = i + 1

@@ -47,7 +47,7 @@ rate = rospy.Rate(20) # 10hz
 def main():
 
     # Create a SMACH state machine
-    sm = smach.StateMachine(outcomes=['deubom'])
+    sm = smach.StateMachine(outcomes=['Mission executed successfully!'])
 
     # Open the container
     with sm:
@@ -57,7 +57,7 @@ def main():
         smach.StateMachine.add('CIRCLE', Circle(),
                                 transitions={'done':'RTL'})
         smach.StateMachine.add('RTL', ReturnToLand(),
-                                transitions={'succeeded':'deubom'})
+                                transitions={'succeeded':'Mission executed successfully!'})
 
      # Execute SMACH plan
     outcome = sm.execute()
