@@ -439,30 +439,134 @@ mavconn-test/fast:
 .PHONY : mavconn-test/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_lisp
+# Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
-std_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
-.PHONY : std_msgs_generate_messages_lisp
+std_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_py
+.PHONY : std_msgs_generate_messages_py
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+std_msgs_generate_messages_py/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/std_msgs_generate_messages_py.dir/build.make dronecontrol/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_eus
+# Target rules for targets named roscpp_generate_messages_py
 
 # Build rule for target.
-std_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_eus
-.PHONY : std_msgs_generate_messages_eus
+roscpp_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_py
+.PHONY : roscpp_generate_messages_py
 
 # fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
+roscpp_generate_messages_py/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/roscpp_generate_messages_py.dir/build.make dronecontrol/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_nodejs
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_nodejs
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_cpp
+
+# Build rule for target.
+roscpp_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_cpp
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make dronecontrol/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_cpp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_cpp
+
+# Build rule for target.
+std_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make dronecontrol/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_eus
+
+# Build rule for target.
+roscpp_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_eus
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/roscpp_generate_messages_eus.dir/build.make dronecontrol/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_py
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_lisp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_nodejs
+
+# Build rule for target.
+roscpp_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_nodejs
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make dronecontrol/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_nodejs
@@ -474,7 +578,7 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f dronecontrol/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make dronecontrol/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -487,73 +591,34 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make beginner_tutorials/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f dronecontrol/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make dronecontrol/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named roscpp_generate_messages_nodejs
+# Target rules for targets named std_msgs_generate_messages_eus
 
 # Build rule for target.
-roscpp_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_nodejs
-.PHONY : roscpp_generate_messages_nodejs
+std_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_eus
+.PHONY : std_msgs_generate_messages_eus
 
 # fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make beginner_tutorials/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
+std_msgs_generate_messages_eus/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make dronecontrol/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named roscpp_generate_messages_eus
+# Target rules for targets named std_msgs_generate_messages_lisp
 
 # Build rule for target.
-roscpp_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_eus
-.PHONY : roscpp_generate_messages_eus
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
 
 # fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/roscpp_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named std_msgs_generate_messages_cpp
-
-# Build rule for target.
-std_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_cpp
-
-# Build rule for target.
-roscpp_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_cpp
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make beginner_tutorials/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_nodejs
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_nodejs
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f dronecontrol/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make dronecontrol/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_eus
@@ -565,73 +630,8 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make dronecontrol/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_py
-
-# Build rule for target.
-roscpp_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_py
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/roscpp_generate_messages_py.dir/build.make beginner_tutorials/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_cpp
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_lisp
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named std_msgs_generate_messages_py
-
-# Build rule for target.
-std_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_py
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_py.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_py
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_py
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make beginner_tutorials/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named integracao_controle.cpp
@@ -645,188 +645,6 @@ integracao_controle.cpp: cmake_check_build_system
 integracao_controle.cpp/fast:
 	$(MAKE) -f dronecontrol/CMakeFiles/integracao_controle.cpp.dir/build.make dronecontrol/CMakeFiles/integracao_controle.cpp.dir/build
 .PHONY : integracao_controle.cpp/fast
-
-#=============================================================================
-# Target rules for targets named trajectorys.cpp
-
-# Build rule for target.
-trajectorys.cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 trajectorys.cpp
-.PHONY : trajectorys.cpp
-
-# fast build rule for target.
-trajectorys.cpp/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/trajectorys.cpp.dir/build.make dronecontrol2/CMakeFiles/trajectorys.cpp.dir/build
-.PHONY : trajectorys.cpp/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_genpy
-
-# Build rule for target.
-dronecontrol2_genpy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_genpy
-.PHONY : dronecontrol2_genpy
-
-# fast build rule for target.
-dronecontrol2_genpy/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_genpy.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_genpy.dir/build
-.PHONY : dronecontrol2_genpy/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_gencpp
-
-# Build rule for target.
-dronecontrol2_gencpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_gencpp
-.PHONY : dronecontrol2_gencpp
-
-# fast build rule for target.
-dronecontrol2_gencpp/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_gencpp.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_gencpp.dir/build
-.PHONY : dronecontrol2_gencpp/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_genlisp
-
-# Build rule for target.
-dronecontrol2_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_genlisp
-.PHONY : dronecontrol2_genlisp
-
-# fast build rule for target.
-dronecontrol2_genlisp/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_genlisp.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_genlisp.dir/build
-.PHONY : dronecontrol2_genlisp/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_generate_messages_cpp
-
-# Build rule for target.
-dronecontrol2_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_generate_messages_cpp
-.PHONY : dronecontrol2_generate_messages_cpp
-
-# fast build rule for target.
-dronecontrol2_generate_messages_cpp/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_cpp.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_cpp.dir/build
-.PHONY : dronecontrol2_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_generate_messages_py
-
-# Build rule for target.
-dronecontrol2_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_generate_messages_py
-.PHONY : dronecontrol2_generate_messages_py
-
-# fast build rule for target.
-dronecontrol2_generate_messages_py/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_py.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_py.dir/build
-.PHONY : dronecontrol2_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named _dronecontrol2_generate_messages_check_deps_Vector3D
-
-# Build rule for target.
-_dronecontrol2_generate_messages_check_deps_Vector3D: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _dronecontrol2_generate_messages_check_deps_Vector3D
-.PHONY : _dronecontrol2_generate_messages_check_deps_Vector3D
-
-# fast build rule for target.
-_dronecontrol2_generate_messages_check_deps_Vector3D/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/_dronecontrol2_generate_messages_check_deps_Vector3D.dir/build.make dronecontrol2/CMakeFiles/_dronecontrol2_generate_messages_check_deps_Vector3D.dir/build
-.PHONY : _dronecontrol2_generate_messages_check_deps_Vector3D/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_generate_messages
-
-# Build rule for target.
-dronecontrol2_generate_messages: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_generate_messages
-.PHONY : dronecontrol2_generate_messages
-
-# fast build rule for target.
-dronecontrol2_generate_messages/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_generate_messages.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_generate_messages.dir/build
-.PHONY : dronecontrol2_generate_messages/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_generate_messages_eus
-
-# Build rule for target.
-dronecontrol2_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_generate_messages_eus
-.PHONY : dronecontrol2_generate_messages_eus
-
-# fast build rule for target.
-dronecontrol2_generate_messages_eus/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_eus.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_eus.dir/build
-.PHONY : dronecontrol2_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named controle.cpp
-
-# Build rule for target.
-controle.cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 controle.cpp
-.PHONY : controle.cpp
-
-# fast build rule for target.
-controle.cpp/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/controle.cpp.dir/build.make dronecontrol2/CMakeFiles/controle.cpp.dir/build
-.PHONY : controle.cpp/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_geneus
-
-# Build rule for target.
-dronecontrol2_geneus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_geneus
-.PHONY : dronecontrol2_geneus
-
-# fast build rule for target.
-dronecontrol2_geneus/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_geneus.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_geneus.dir/build
-.PHONY : dronecontrol2_geneus/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_generate_messages_lisp
-
-# Build rule for target.
-dronecontrol2_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_generate_messages_lisp
-.PHONY : dronecontrol2_generate_messages_lisp
-
-# fast build rule for target.
-dronecontrol2_generate_messages_lisp/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_lisp.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_lisp.dir/build
-.PHONY : dronecontrol2_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_generate_messages_nodejs
-
-# Build rule for target.
-dronecontrol2_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_generate_messages_nodejs
-.PHONY : dronecontrol2_generate_messages_nodejs
-
-# fast build rule for target.
-dronecontrol2_generate_messages_nodejs/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_nodejs.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_generate_messages_nodejs.dir/build
-.PHONY : dronecontrol2_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named dronecontrol2_gennodejs
-
-# Build rule for target.
-dronecontrol2_gennodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dronecontrol2_gennodejs
-.PHONY : dronecontrol2_gennodejs
-
-# fast build rule for target.
-dronecontrol2_gennodejs/fast:
-	$(MAKE) -f dronecontrol2/CMakeFiles/dronecontrol2_gennodejs.dir/build.make dronecontrol2/CMakeFiles/dronecontrol2_gennodejs.dir/build
-.PHONY : dronecontrol2_gennodejs/fast
 
 #=============================================================================
 # Target rules for targets named sensor_msgs_generate_messages_nodejs
@@ -5438,36 +5256,22 @@ help:
 	@echo "... run_tests_libmavconn_gtest_mavconn-test"
 	@echo "... _run_tests_libmavconn_gtest_mavconn-test"
 	@echo "... mavconn-test"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... integracao_controle.cpp"
-	@echo "... trajectorys.cpp"
-	@echo "... dronecontrol2_genpy"
-	@echo "... dronecontrol2_gencpp"
-	@echo "... dronecontrol2_genlisp"
-	@echo "... dronecontrol2_generate_messages_cpp"
-	@echo "... dronecontrol2_generate_messages_py"
-	@echo "... _dronecontrol2_generate_messages_check_deps_Vector3D"
-	@echo "... dronecontrol2_generate_messages"
-	@echo "... dronecontrol2_generate_messages_eus"
-	@echo "... controle.cpp"
-	@echo "... dronecontrol2_geneus"
-	@echo "... dronecontrol2_generate_messages_lisp"
-	@echo "... dronecontrol2_generate_messages_nodejs"
-	@echo "... dronecontrol2_gennodejs"
 	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_py"

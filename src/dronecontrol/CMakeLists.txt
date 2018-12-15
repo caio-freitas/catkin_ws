@@ -129,8 +129,14 @@ include_directories(
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_executable(controle.cpp src/controle.cpp)
+#add_executable(trajectorys.cpp src/trajectorys.cpp)
+
 add_executable(integracao_controle.cpp src/integracao_controle.cpp)
 target_link_libraries(integracao_controle.cpp ${catkin_LIBRARIES})
+
+#target_link_libraries(controle.cpp ${catkin_LIBRARIES})
+#target_link_libraries(trajectorys.cpp ${catkin_LIBRARIES})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context

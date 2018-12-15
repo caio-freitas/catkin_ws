@@ -58,7 +58,7 @@ yawLeftMSG = 'yaw-antihorario'
 open('log', 'w').close() # Apaga os dados do log anterior
 file = open('log', 'a')
 file.write("*********** flight log *************\n")
-file.write("Elapsed Time;Voltage;Current\n\n")
+file.write("Elapsed Time;X Position;Y Position;Z Position;Voltage;Current\n\n")
 init_time = time.time()
 last_time = init_time
 
@@ -180,7 +180,7 @@ def main():
 
     mainDisplay.fill(grey)
     mousePos = pygame.mouse.get_pos()
-    #~/catkin_ws/src/
+
     #=========== Criando os objetos para os botoes =================#
     upButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/upbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/upbuttonpressed.png', ((leftControllerCenterX), (leftControllerCenterY - shift)), 150, upMSG)
     downButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/downbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/downbuttonpressed.png', ((leftControllerCenterX), (leftControllerCenterY + shift)), 150, downMSG)
@@ -233,9 +233,15 @@ def main():
 
     #============ LOG ===============#
     def log():
+        global position
         global last_time
         if(time.time()-last_time) > 0.1:
             file.write(str(time.time() - init_time))
+
+            file.write(str(position.pose.position.x) +  ';')
+            file.write(str(position.pose.position.y) + ';')
+            file.write(str(position.pose.position.z) + ';')
+
             file.write(';')
             file.write(str(battery.voltage))
             file.write(';')
@@ -291,6 +297,7 @@ def main():
             if event.type == pygame.QUIT:
                 exit=True
                 publish("stop")
+                file.close()
                 #====== Botoes!!!  ==========#
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
@@ -342,9 +349,8 @@ def main():
                     yawRightButton.show()
             elif event.type == pygame.KEYUP:
                 publish("stop")
-            print(event)
         log()
-        arming_tool()
+        #arming_tool()
         pygame.display.update()
         clock.tick()
         pygame.event.poll()
