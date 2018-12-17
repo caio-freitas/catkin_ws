@@ -11,7 +11,6 @@ import time
 goal_pose = PoseStamped()
 drone_state = State()
 drone_pose = PoseStamped()
-local = PoseStamped()
 
 def chegou(goal, actual):
     if (abs(goal.pose.position.x - actual.pose.position.x) < 0.05) and (abs(goal.pose.position.y - actual.pose.position.y) < 0.05) and (abs(goal.pose.position.z - actual.pose.position.z) < 0.05):
@@ -57,30 +56,32 @@ def drone_takeoff(height, duration):
         goal_pose.pose.position.z = z
         local_position_pub.publish(goal_pose)
 
-
-
-    rospy.loginfo("[ROS] SETUP CONCLUIDO")
-
     init_time = time.time()
     while not rospy.is_shutdown() and time.time() - init_time < duration:
         #print(drone_pose)
-        if drone_state != "OFFBOARD" or not drone_state.armed:
-            arm(True)
+        if drone_state != "OFFBOARD":
+            rospy.loginfo("SETTING OFFBOARD FLIGHT MODE")
             set_mode(custom_mode = "OFFBOARD")
+
+        if not drone_state.armed:
+            rospy.logwarn("ARMING DRONE")
+            arm(True)
 
         if drone_state.armed == True:
             rospy.loginfo("DRONE ARMED")
 
         if drone_state.mode == "OFFBOARD":
             rospy.loginfo('OFFBOARD mode setted')
-        print(abs(drone_pose.pose.position.z - goal_pose.pose.position.z))
+
         if not chegou(drone_pose, goal_pose):
+            rospy.logwarn("TAKING OFF")
             set_position(0, 0, height)
-            print("DECOLANDO")
+
+        print("Position: (" + str(drone_pose.pose.position.x)+  ", "+ str(drone_pose.pose.position.y)+ ", "+ str(drone_pose.pose.position.z), ")")
 
         rate.sleep()
 
-    print("\nROS FOI DESATIVADO\n")
+    rospy.loginfo("")
     return "done"
 
 if __name__ == "__main__":

@@ -1,336 +1,365 @@
 #!/usr/bin/env python
+
 import pygame
 
 import rospy
+import mavros_msgs
+from mavros_msgs import srv
+import cv2
+from cv_bridge import CvBridge
+from geometry_msgs.msg import PoseStamped
+from sensor_msgs.msg import BatteryState, Image
 from std_msgs.msg import String
-
-## arquivo original com imagens diminuidas por um fator de 2/3
+from mavros_msgs.msg import State
+import time
 
 pygame.init()
 
-################################### Parametros ###############################################
+black = (0,0,0)
+white = (255,255,255)
+grey = (100,100,100)
+darkGreen = (0,30,0)
+brightGreen = (100, 200, 100)
+brightYellow = (200, 200, 0)
+orange = (250, 160, 0)
+red = (255, 0, 0)
+
+FONT = pygame.font.Font("/home/caio/catkin_ws/src/dronecontrol/interface/STIX-Bold.otf", 18)
 
 display_width = 920
-
 display_height = 720
 
-       #(R,G,B)
-black = (0,0,0)
-
-white = (255,255,255)
-
-grey = (100,100,100)
-
-darkGreen = (0,30,0)
-
 xshift = 500        # parametro de deslocamento dos centros dos botoes ao x central da tela
-
 controllerY = 550               # Coordenada y do centro dos botoes
-
 controllerCenterX = display_width/2 - 20      #Coordenada x central da tela
-
 buttonSide = 100    #largura da imagem .png dos botoes
-
 rightControllerCenterX = controllerCenterX + xshift - 2*buttonSide      ## Coordenada x do centro dos botoes da direita
-
 rightControllerCenterY = leftControllerCenterY = controllerY            ## Coordenada y do centro dos botoes
-
 leftControllerCenterX = (controllerCenterX - xshift + 2*buttonSide)/2   ## Coordenada x do centro dos botoes da esquerda
-
 shift = 52                              ## Distancia dos botoes ao centro
-
+cam_height = 400
+cam_width = 700
+cam_pose = (display_width/2 - cam_height/1.2, display_height/2 - cam_height/1.2)
 # largura e altura do retangulo para exibicao de dados
 dataWidth = 320
-
 dataHeight = 160
+dataRect = [(display_width/2 - dataWidth/2), (display_height-dataHeight-20), dataWidth, dataHeight]
+xc, yc = 675, 500
+#========== Mensagens a serem publicadas no topico rospy ==========
+leftMSG = 'left'
+rightMSG = 'right'
+downMSG = 'down'
+upMSG = 'up'
+frontMSG = 'forward'
+backMSG = 'back'
+yawRightMSG = 'yaw-horario'
+yawLeftMSG = 'yaw-antihorario'
 
-frame_pos = (((display_width/2)-(766/2)),0)        ## largura da moludura = 800 (altura 600)
+position = PoseStamped()
+battery = BatteryState()
+current_state = State()
 
-##############################################################################################
-
-gameDisplay = pygame.display.set_mode((display_width,display_height))   # Cria a tela
-
-pygame.display.set_caption('--SkyRats--')           ## Nome do programa
-
+click = pygame.mouse.get_pressed()[0]
 clock = pygame.time.Clock()
+mainDisplay = pygame.display.set_mode((display_width,display_height))
+pygame.display.set_caption('--Skyrats: eh nois q voa --')
 
-# Variaveis para armazenar as imagens
-upButtonImg = pygame.image.load('upbutton.png')
-upButtonPressedImg = pygame.image.load('upbuttonpressed.png')
-downButtonImg = pygame.image.load('downbutton.png')
-downButtonPressedImg = pygame.image.load('downbuttonpressed.png')
-rightButtonImg = pygame.image.load('rightbutton.png')
-rightButtonPressedImg = pygame.image.load('rightbuttonpressed.png')
-leftButtonImg = pygame.image.load('leftbutton.png')
-leftButtonPressedImg = pygame.image.load('leftbuttonpressed.png')
-frameImg = pygame.image.load('frame.png')
+init_time = time.time()
+last_time = init_time
+
+arming_click = 0
+arm = rospy.ServiceProxy('/mavros/cmd/arming', mavros_msgs.srv.CommandBool)
+def main():
+
+    class VisualElement:
+        def __init__(self, imgName, position):
+            self.img = pygame.image.load(imgName)
+            self.position = position
+
+        def show(self):
+            mainDisplay.blit(self.img, self.position)
+            pass
+
+    class Text:
+        def __init__(self, text, position):
+            pygame.font.init()
+            global FONT
+            self.surface = FONT.render(str(text), True, brightGreen)
+            self.rectangle = self.surface.get_rect()
+            self.rectangle.center = position
+
+        def show(self):
+        	mainDisplay.blit(self.surface, self.rectangle)
 
 
-# Funcoes para mostrar as imagens na tela
+    class Button:
+        def __init__(self, imgName, imgPressedName, position, size, msg):
+            self.buttonImg = pygame.image.load(imgName)
+            self.buttonPressedImg = pygame.image.load(imgPressedName)
+            self.buttonPose = position
+            self.buttonSize = size
+            self.buttonMsg = msg
+            self.show()
 
 
-def insideButton(x,y,s):
+        def show(self):
+            mainDisplay.blit(self.buttonImg, self.buttonPose)
 
-    if (y >= -x and y<= x) and (y >= x - s and y <= s - x):
+        def active(self):
+            mainDisplay.blit(self.buttonPressedImg, self.buttonPose)
 
-        return True
+        def inside(self):
+            position = self.buttonPose
+            mousePos = pygame.mouse.get_pos()
+            s = self.buttonSize
+            x = mousePos[0] - position[0]
+            y = mousePos[1] - position[1]
+            if (y >= -x and y<= x) and (y >= x - s and y <= s - x):
+                return True
+            else:
+                return False
+            pass
 
-    else:
+        def publishMsg(self):
+            pub = rospy.Publisher('controle', String, queue_size=10)
+            rospy.init_node('interface', anonymous=True)
+            rate = rospy.Rate(20) # 10hz
+            str = self.buttonMsg
+            pub.publish(str)
+            rate.sleep()
+            pass
 
-        return False
+    ##### Publisher subscriber "interface", que publica no topico "controle"
+    def publish(str):
+        pub = rospy.Publisher('controle', String, queue_size=10)
+        rospy.init_node('interface', anonymous=True)
+        rate = rospy.Rate(60) # 10hz
+        pub.publish(str)
+        rate.sleep()
 
-
-def frontbutton():
-    position = ((rightControllerCenterX), (rightControllerCenterY - shift))
-    gameDisplay.blit(upButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(upButtonPressedImg, position)
+    # Circulo para indicar e alterar estado do drone
+    def arming_tool():
+        global arming_click
+        global arm
+        global click
+        mousePos = pygame.mouse.get_pos() # Pega posicao do mouse
         mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = 'forward'
-            publicaMensagem(msg)
+        (x, y) = mousePos
+        new_click = mousec[0]
+        armpose = (xc, yc)
+        if (x < xc + 10) and (x > xc - 10) and (y < yc + 10) and (y > yc - 10):
+            if click == True:
+                arming_click = arming_click + 1
 
-def backbutton():
-    position = ((rightControllerCenterX), (rightControllerCenterY + shift))
-    gameDisplay.blit(downButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - 0.5*buttonSide
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(downButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = 'back'
-            publicaMensagem(msg)
+        if arming_click == 0:
+            pygame.draw.circle(mainDisplay, brightGreen, armpose, 20)
+            if current_state.armed == True:
+                arm(False)
 
+        elif arming_click > 0 and arming_click < 3:
+            pygame.draw.circle(mainDisplay, orange, armpose, 20)
+            if current_state.armed == True:
+                arm(False)
 
+        elif arming_click == 3:
+            pygame.draw.circle(mainDisplay, red, armpose, 20)
+            if current_state.armed == False:
+                arm(True)
 
-def rightbutton():
-    position = ((rightControllerCenterX + shift), (rightControllerCenterY))
-    gameDisplay.blit(rightButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(rightButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = 'right'
-            publicaMensagem(msg)
+        elif arming_click > 3 and arming_click < 6:
+            pygame.draw.circle(mainDisplay, black, armpose, 20)
+
+        elif arming_click == 6:
+            pygame.draw.circle(mainDisplay, brightGreen, armpose, 20)
+            arming_click = 0
 
 
-def leftbutton():
-    position = ((rightControllerCenterX - shift), (rightControllerCenterY))
-    gameDisplay.blit(leftButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(leftButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = ('left')
-            publicaMensagem(msg)
-
-
-def yawrightbutton():
-    position = ((leftControllerCenterX + shift), (leftControllerCenterY))
-    gameDisplay.blit(rightButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(rightButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = ('yaw-horario')
-            publicaMensagem(msg)
-
-def yawleftbutton():
-    position = ((leftControllerCenterX - shift), (leftControllerCenterY))
-    gameDisplay.blit(leftButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(leftButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = ('yaw-antihorario')
-            publicaMensagem(msg)
-
-def upbutton():
-    position = ((leftControllerCenterX), (leftControllerCenterY - shift))
-    gameDisplay.blit(upButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(upButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = ('up')
-            publicaMensagem(msg)
-
-def downbutton():
-    position = ((leftControllerCenterX), (leftControllerCenterY + shift))
-    gameDisplay.blit(downButtonImg, position)
-    x = mousePos[0] - position[0]
-    y = mousePos[1] - position[1] - buttonSide/2
-    if insideButton(x,y,buttonSide) == True:
-        gameDisplay.blit(downButtonPressedImg, position)
-        mousec = pygame.mouse.get_pressed()
-        click = mousec[0]
-        if click == 1:
-            msg = ('down')
-            publicaMensagem(msg)
-
-def frame():
-
-    gameDisplay.blit(frameImg, frame_pos)
-
-
-def publicaMensagem(hello_str):
-
-    pub = rospy.Publisher('controle', String, queue_size=10)
-
-    rospy.init_node('interface', anonymous=True)
-
-    rate = rospy.Rate(10) # 10hz
-
-    pub.publish(hello_str)
-
-    rate.sleep()
-
-
-exit = False
-
-
-while not exit:
-
+    mainDisplay.fill(grey)
     mousePos = pygame.mouse.get_pos()
 
-    gameDisplay.fill(grey)
+    #=========== Criando os objetos para os botoes =================#
+    upButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/upbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/upbuttonpressed.png', ((leftControllerCenterX), (leftControllerCenterY - shift)), 150, upMSG)
+    downButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/downbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/downbuttonpressed.png', ((leftControllerCenterX), (leftControllerCenterY + shift)), 150, downMSG)
+    rightButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/rightbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/rightbuttonpressed.png', ((rightControllerCenterX + shift), (rightControllerCenterY)), 150, rightMSG)
+    leftButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/leftbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/leftbuttonpressed.png', ((rightControllerCenterX - shift), (rightControllerCenterY)), 150, leftMSG)
+    frontButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/upbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/upbuttonpressed.png', ((rightControllerCenterX), (rightControllerCenterY - shift)), 150, frontMSG)
+    backButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/downbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/downbuttonpressed.png', ((rightControllerCenterX), (rightControllerCenterY + shift)), 150, backMSG)
+    yawRightButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/rightbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/rightbuttonpressed.png', ((leftControllerCenterX + shift), (leftControllerCenterY)), 150, yawRightMSG)
+    yawLeftButton = Button('/home/caio/catkin_ws/src/dronecontrol/interface/media/leftbutton.png', '/home/caio/catkin_ws/src/dronecontrol/interface/media/leftbuttonpressed.png', ((leftControllerCenterX - shift), (leftControllerCenterY)), 150, yawLeftMSG)
+    button_list = {upButton, downButton, rightButton, leftButton, frontButton, backButton, yawRightButton, yawLeftButton}
 
-    frontbutton()
+    frame = VisualElement('/home/caio/catkin_ws/src/dronecontrol/interface/media/frame.png', (((display_width/2)-((display_height+shift)/2)),0))
 
-    backbutton()
+    element_list = {frame}
 
-    rightbutton()
+    #============== Inicializacao do subscriber de posicao ===#
+    #rospy.init_node("interface_sub", anonymous=True)
+    #rate = rospy.Rate(20)
+    def pose_callback(data):
+        global position
+        position.pose.position.x = data.pose.position.x
+        position.pose.position.y = data.pose.position.y
+        position.pose.position.z = data.pose.position.z
+    position_sub = rospy.Subscriber('/mavros/local_position/pose', PoseStamped, pose_callback)
+    #==================== BATERIA ======================#
+    def battery_callback(bat_dat):
+        global battery
 
-    leftbutton()
-
-    yawrightbutton()
-
-    yawleftbutton()
-
-    upbutton()
-
-    downbutton()
-
-    frame()
-
-    dataRect = [(display_width/2 - dataWidth/2), (display_height-dataHeight-20), dataWidth, dataHeight]
-
-    pygame.draw.rect(gameDisplay, darkGreen, dataRect)
-
-    for event in pygame.event.get():
-
-        if event.type == pygame.QUIT:
-
-            exit = True
-
-            # controle com Teclado
-    if event.type == pygame.KEYDOWN:
-
-        if event.key == pygame.K_LEFT:
-
-            position = ((rightControllerCenterX - shift), (rightControllerCenterY))
-
-            gameDisplay.blit(leftButtonPressedImg, position)
-
-            msg = ('left')
-
-            publicaMensagem(msg)
-
-        elif event.key == pygame.K_RIGHT:
-
-            position = ((rightControllerCenterX + shift), (rightControllerCenterY))
-
-            gameDisplay.blit(rightButtonPressedImg, position)
-
-            msg = ('right')
-
-            publicaMensagem(msg)
-
-        elif event.key == pygame.K_DOWN:
-
-            position = ((rightControllerCenterX), (rightControllerCenterY + shift))
-
-            gameDisplay.blit(downButtonPressedImg, position)
-
-            msg = ('back')
-
-            publicaMensagem(msg)
+        battery.voltage = bat_dat.voltage
+        battery.percentage = bat_dat.percentage
+        battery.current = bat_dat.current
+    battery_subscriber = rospy.Subscriber('/mavros/battery', BatteryState, battery_callback)
 
 
-        elif event.key == pygame.K_UP:
 
-            position = ((rightControllerCenterX), (rightControllerCenterY - shift))
+    def state_callback(state_data):
+        global current_state
+        current_state = state_data
+    state_status_subscribe = rospy.Subscriber('/mavros/state', State, state_callback)
 
-            gameDisplay.blit(upButtonPressedImg, position)
+    #======== IMAGENS ==========#
+    cam_image = pygame.Surface((cam_width,cam_height))
 
-            msg = ('forward')
+    def img_callback(img):
+        global cam_image
+        global newImage
+        cam_image = pygame.image.fromstring(img.data, (320,240), "RGB")
+        cam_image = pygame.transform.scale(cam_image, (cam_width, cam_height))
+        mainDisplay.blit(cam_image, cam_pose)
 
-            publicaMensagem(msg)
+    #============ LOG ===============#
+
+    open('log', 'w').close() # Apaga os dados do log anterior
+    file = open('log', 'a')
+    file.write("*********** flight log *************\n")
+    file.write("Elapsed Time;X Position;Y Position;Z Position;Voltage;Current\n\n")
+
+    def log():
+        global position
+        global last_time
+        if(time.time()-last_time) > 0.1:
+
+            file.write(str(time.time() - init_time))
+            file.write(';')
+
+            file.write(str(position.pose.position.x))
+            file.write(';')
+            file.write(str(position.pose.position.y))
+            file.write(';')
+            file.write(str(position.pose.position.z))
+            file.write(';')
+
+            file.write(str(battery.voltage))
+            file.write(';')
+            file.write(str(battery.current))
+            file.write('\n')
+            last_time = time.time()
 
 
-        elif event.key == pygame.K_w:
 
-            position = ((leftControllerCenterX), (leftControllerCenterY - shift))
+    exit=False
+    img_sub = rospy.Subscriber('/camera1/image_raw', Image, img_callback)
 
-            gameDisplay.blit(upButtonPressedImg, position)
+    while not exit:
+        mousePos = pygame.mouse.get_pos() # Pega posicao do mouse
+        mainDisplay.fill(grey)
+        pygame.draw.rect(mainDisplay, darkGreen, dataRect)
+        #### Mostra os botoes de acordo com a posicao do mouse
+        for Button in button_list:
+            if Button.inside():
+                Button.active()
+                mousec = pygame.mouse.get_pressed()
+                click = mousec[0]
+                if click == 1:
+                    Button.publishMsg()
+            else:
+                Button.show()
+        #
+        #========= Mostra elementos visuais =========#
+        for Element in element_list:
+            Element.show()
+        #
+        position_text = Text("Position: ", (350,550))
+        battery_text = Text("Battery Tension: ", (350, 625))
+        battery_voltage = Text(battery.voltage, (400, 640))
+        battery_text2 = Text("Battery Current:", (350, 660))
+        battery_current = Text(battery.current, (400, 680))
+        x_pose = Text(position.pose.position.x, (380,570))
+        y_pose = Text(position.pose.position.y, (380, 585))
+        z_pose = Text(position.pose.position.z, (380, 600))
+        arm_text = Text("ARM", (675, 470))
+        arm_text.show()
+        position_text.show()
+        x_pose.show()
+        y_pose.show()
+        z_pose.show()
+    	battery_text.show()
+    	battery_voltage.show()
+    	battery_text2.show()
+    	battery_current.show()
 
-            msg = ('up')
+        for event in pygame.event.get():
+            print('entrou no for')
+            if event.type == pygame.QUIT:
+                exit=True
+                publish("stop")
+                file.close()
+                #====== Botoes!!!  ==========#
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    leftButton.active()
+                    leftButton.publishMsg()
+                else:
+                    leftButton.show()
 
-            publicaMensagem(msg)
+                if event.key == pygame.K_RIGHT:
+                    rightButton.active()
+                    rightButton.publishMsg()
+                else:
+                    rightButton.show()
 
-        elif event.key == pygame.K_s:
+                if event.key == pygame.K_UP:
+                    frontButton.active()
+                    frontButton.publishMsg()
+                else:
+                    frontButton.show()
 
-            position = ((leftControllerCenterX), (leftControllerCenterY + shift))
+                if event.key == pygame.K_DOWN:
+                    backButton.active()
+                    backButton.publishMsg()
+                else:
+                    backButton.show()
 
-            gameDisplay.blit(downButtonPressedImg, position)
+                if event.key == pygame.K_w:
+                    upButton.active()
+                    upButton.publishMsg()
+                else:
+                    upButton.show()
 
-            msg = ('down')
+                if event.key == pygame.K_a:
+                    yawLeftButton.active()
+                    yawLeftButton.publishMsg()
+                else:
+                    yawLeftButton.show()
 
-            publicaMensagem(msg)
+                if event.key == pygame.K_s:
+                    downButton.active()
+                    downButton.publishMsg()
+                else:
+                    downButton.show()
 
-        elif event.key == pygame.K_d:
-
-            position = ((leftControllerCenterX + shift), (leftControllerCenterY))
-
-            gameDisplay.blit(rightButtonPressedImg, position)
-
-            msg = ('yaw-horario')
-
-            publicaMensagem(msg)
-
-        elif event.key == pygame.K_a:
-
-            position = ((leftControllerCenterX - shift), (leftControllerCenterY))
-
-            gameDisplay.blit(leftButtonPressedImg, position)
-
-            msg = ('yaw-antihorario')
-
-            publicaMensagem(msg)
-
+                if event.key == pygame.K_d:
+                    yawRightButton.active()
+                    yawRightButton.publishMsg()
+                else:
+                    yawRightButton.show()
+            elif event.type == pygame.KEYUP:
+                publish("stop")
+        log()
+        #arming_tool()
+        pygame.display.update()
+        clock.tick()
         pygame.event.poll()
 
-    print(event)
-    pygame.display.update()
-
-    clock.tick()
+if __name__ == "__main__":
+    main()

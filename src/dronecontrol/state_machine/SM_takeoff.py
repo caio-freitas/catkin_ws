@@ -12,7 +12,7 @@ from takeoff import drone_takeoff
 # define state Takeoff
 class Takeoff(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['succeeded','aborted'])
+        smach.State.__init__(self, outcomes=['done','aborted'])
         self.counter = 0
 
     def execute(self, userdata):
@@ -44,7 +44,7 @@ def main():
     with sm:
         # Add states to the container
         smach.StateMachine.add('TAKEOFF', Takeoff(),
-                                transitions={'succeeded':'RTL', 'aborted':'Mission executed successfully!'})
+                                transitions={'done':'RTL', 'aborted':'Mission executed successfully!'})
         smach.StateMachine.add('RTL', ReturnToLand(),
                                 transitions={'succeeded':'Mission executed successfully!'})
 
