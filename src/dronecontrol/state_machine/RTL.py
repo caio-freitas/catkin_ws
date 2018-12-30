@@ -11,16 +11,22 @@ import time
 ################# Objetos ############
 goal_pose = PoseStamped()
 drone_pose = PoseStamped()
+final_position = PoseStamped()
+
+final_position.pose.position.x = 0
+final_position.pose.position.y = 0
+final_position.pose.position.y = 0
 
 def chegou(goal, actual):
-    if (abs(goal.pose.position.x - actual.pose.position.x) < 0.05) and (abs(goal.pose.position.y - actual.pose.position.y) < 0.05) and (abs(goal.pose.position.z - actual.pose.position.z) < 0.05):
+    if (abs(goal.pose.position.x - actual.pose.position.x) < 0.1) and (abs(goal.pose.position.y - actual.pose.position.y) < 0.1) and (abs(goal.pose.position.z - actual.pose.position.z) < 0.10):
         return True
     else:
         return False
 
 def drone_RTL():
     rate = rospy.Rate(20)
-
+    velocity = 0.3
+    part = velocity/20.0
     ############## Funcoes de Callback ########
     def local_callback(local):
         global drone_pose
@@ -50,27 +56,41 @@ def drone_RTL():
     rospy.loginfo("[ROS] SETUP CONCLUIDO")
     rate.sleep()
     height = drone_pose.pose.position.z
-    print("Position: ", drone_pose.pose.position.x, drone_pose.pose.position.y, drone_pose.pose.position.z)
-    rate.sleep()
-    set_position(0,0,height)
+    rospy.loginfo('Position: (' + str(drone_pose.pose.position.x) + ', ' + str(drone_pose.pose.position.y) + ', ' + str(drone_pose.pose.position.z) + ')')
+
     while not chegou(drone_pose, goal_pose):
+        rospy.loginfo('Executing State RTL')
+
+        rospy.loginfo ("[ INFO ] STARING HOME")
         set_position(0,0,height)
-        print ("[ INFO ] STARING HOME")
         rate.sleep()
+
+    t=0
     set_position(0,0,0)
-    while not chegou(drone_pose, goal_pose):
-        print(abs(drone_pose.pose.position.z - goal_pose.pose.position.z))
+    rate.sleep()
+    while not chegou(drone_pose, final_position):
+        rospy.loginfo('Executing State RTL')
+
+        rospy.loginfo('Height: ' + str(abs(drone_pose.pose.position.z)))
+        #print drone_pose
         if not chegou(drone_pose, goal_pose):
-            set_position(0,0,0)
-            print ("[ INFO ] LANDING")
+            rospy.logwarn ('LANDING AT ' + str(velocity) + 'm/s')
+            if t < height:
+                t += part
+            set_position(0,0,height - t)
             rate.sleep()
-        if chegou(drone_pose, goal_pose):
-            arm(False)
-            break
+
+        else:
+            if t <= height:
+                t += part
+                set_position(0,0,height - t)
+            else:
+                set_position(0,0,0)
+            rate.sleep()
 
     print("\nCHEGUEEEI\n")
+    rospy.logwarn("DESARMANDO DRONE")
     arm(False)
-    print("DESARMANDO DRONE")
     return "succeeded"
 
 if __name__ == "__main__":

@@ -36,11 +36,14 @@ def drone_stay(duration):
     init_pose.pose.position.x = drone_pose.pose.position.x
     init_pose.pose.position.y = drone_pose.pose.position.y
     init_pose.pose.position.z = drone_pose.pose.position.z
+
     while not rospy.is_shutdown() and time.time() - init_time < duration:
+        rospy.loginfo('Executing State STAY')
         local_position_pub.publish(init_pose)
         info = 'Position: (' + str(drone_pose.pose.position.x) + ', ' + str(drone_pose.pose.position.y) + ', ' + str(drone_pose.pose.position.z) +   ')'
         rospy.loginfo(info)
         rospy.loginfo('STAYING IN POSITION')
+        rospy.loginfo('TIME: ' + str(time.time() - init_time))
         rate.sleep()
 
     return "done"

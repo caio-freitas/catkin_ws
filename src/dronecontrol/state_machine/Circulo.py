@@ -19,11 +19,20 @@ current_state = State() #recebe o estado da maquina
 #rospy.init_node('Vel_Control_Node', anonymous = True)
 #rate = rospy.Rate(10)
 
+# class Circle:
+#     def __init__(self):
+#         self.local_position_pub = rospy.Publisher('/mavros/setpoint_position/local', PoseStamped, queue_size = 100)
+#
+#         self.local_atual = rospy.Subscriber('/mavros/local_position/pose', PoseStamped, local_callback)
+#         self.arm = rospy.ServiceProxy('/mavros/cmd/arming', mavros_msgs.srv.CommandBool)
+#     def callback(self, data)
+    
 
 def fazCirculo(R):
     #rospy.init_node('Vel_Control_Node', anonymous = True)
-    rate = rospy.Rate(10)
-
+    rate = rospy.Rate(20)
+    time = 20
+    end = 20.0*time
     def set_position(x, y, z):
         global goal_pose
         goal_pose.pose.position.x = x
@@ -59,8 +68,8 @@ def fazCirculo(R):
 
     part = 0.1
     i=0
-    while(i<500):
-        print("[ INFO ] State Circle")
+    while(i<end):
+        rospy.loginfo("Executing State CIRCLE")
         theta = (3/4)*math.pi + part
         #if not chegou(goal_pose, drone_pose):
         set_position(R*math.cos(theta), R + R*math.sin(theta), h)

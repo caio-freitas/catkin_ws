@@ -20,6 +20,8 @@ def chegou(goal, actual):
 
 def drone_takeoff(height, duration):
     rate = rospy.Rate(20) # 10hz
+    velocity = 0.3
+    part = velocity/20.0
     ############## Funcoes de Callback ########
     def state_callback(state_data):
         global drone_state
@@ -56,9 +58,16 @@ def drone_takeoff(height, duration):
         goal_pose.pose.position.z = z
         local_position_pub.publish(goal_pose)
 
+    while not drone_state.armed:
+        rospy.logwarn("ARMING DRONE")
+        arm(True)
+
     init_time = time.time()
-    while not rospy.is_shutdown() and time.time() - init_time < duration:
-        #print(drone_pose)
+
+    t=0
+    while not rospy.is_shutdown() and drone_pose.pose.position.z <= height:
+        rospy.loginfo('Executing State TAKEOFF')
+
         if drone_state != "OFFBOARD":
             rospy.loginfo("SETTING OFFBOARD FLIGHT MODE")
             set_mode(custom_mode = "OFFBOARD")
@@ -70,18 +79,20 @@ def drone_takeoff(height, duration):
         if drone_state.armed == True:
             rospy.loginfo("DRONE ARMED")
 
-        if drone_state.mode == "OFFBOARD":
-            rospy.loginfo('OFFBOARD mode setted')
-
-        if not chegou(drone_pose, goal_pose):
-            rospy.logwarn("TAKING OFF")
+        #if not chegou(drone_pose, goal_pose)
+        if t < height:
+            rospy.logwarn('TAKING OFF AT ' + str(velocity) + ' m/s')
+            set_position(0, 0, t)
+            t += part
+        else:
             set_position(0, 0, height)
 
-        print("Position: (" + str(drone_pose.pose.position.x)+  ", "+ str(drone_pose.pose.position.y)+ ", "+ str(drone_pose.pose.position.z), ")")
+        rospy.loginfo('Position: (' + str(drone_pose.pose.position.x) + ', ' + str(drone_pose.pose.position.y) + ', '+ str(drone_pose.pose.position.z) + ')')
 
         rate.sleep()
 
-    rospy.loginfo("")
+    set_position(0, 0, height)
+
     return "done"
 
 if __name__ == "__main__":
