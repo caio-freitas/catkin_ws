@@ -11,6 +11,7 @@ from geometry_msgs.msg import PoseStamped
 from sensor_msgs.msg import BatteryState, Image
 from std_msgs.msg import String
 from mavros_msgs.msg import State
+from drone_video import Video
 import time
 
 pygame.init()
@@ -66,11 +67,7 @@ pygame.display.set_caption('--Skyrats: eh nois q voa --')
 
 init_time = time.time()
 last_time = init_time
-
-arming_click = 0
-arm = rospy.ServiceProxy('/mavros/cmd/arming', mavros_msgs.srv.CommandBool)
 def main():
-
     class VisualElement:
         def __init__(self, imgName, position):
             self.img = pygame.image.load(imgName)
@@ -137,43 +134,6 @@ def main():
         pub.publish(str)
         rate.sleep()
 
-    # Circulo para indicar e alterar estado do drone
-    def arming_tool():
-        global arming_click
-        global arm
-        global click
-        mousePos = pygame.mouse.get_pos() # Pega posicao do mouse
-        mousec = pygame.mouse.get_pressed()
-        (x, y) = mousePos
-        new_click = mousec[0]
-        armpose = (xc, yc)
-        if (x < xc + 10) and (x > xc - 10) and (y < yc + 10) and (y > yc - 10):
-            if click == True:
-                arming_click = arming_click + 1
-
-        if arming_click == 0:
-            pygame.draw.circle(mainDisplay, brightGreen, armpose, 20)
-            if current_state.armed == True:
-                arm(False)
-
-        elif arming_click > 0 and arming_click < 3:
-            pygame.draw.circle(mainDisplay, orange, armpose, 20)
-            if current_state.armed == True:
-                arm(False)
-
-        elif arming_click == 3:
-            pygame.draw.circle(mainDisplay, red, armpose, 20)
-            if current_state.armed == False:
-                arm(True)
-
-        elif arming_click > 3 and arming_click < 6:
-            pygame.draw.circle(mainDisplay, black, armpose, 20)
-
-        elif arming_click == 6:
-            pygame.draw.circle(mainDisplay, brightGreen, armpose, 20)
-            arming_click = 0
-
-
     mainDisplay.fill(grey)
     mousePos = pygame.mouse.get_pos()
 
@@ -225,7 +185,7 @@ def main():
         global newImage
         cam_image = pygame.image.fromstring(img.data, (320,240), "RGB")
         cam_image = pygame.transform.scale(cam_image, (cam_width, cam_height))
-        mainDisplay.blit(cam_image, cam_pose)
+        #mainDisplay.blit(cam_image, cam_pose)
 
     #============ LOG ===============#
 
@@ -259,8 +219,18 @@ def main():
 
     exit=False
     img_sub = rospy.Subscriber('/camera1/image_raw', Image, img_callback)
-
+    video = Video()
     while not exit:
+
+        # if not video.frame_available():
+        # #     continue
+        # # cam = video.frame()
+        # #cam_image = pygame.image.fromstring(img.data, (320,240), "RGB")
+        # cam = pygame.transform.scale(cam, (cam_width, cam_height))
+        # mainDisplay.blit(cam, cam_pose)
+        #cv2.imshow("cam",cam)
+
+
         mousePos = pygame.mouse.get_pos() # Pega posicao do mouse
         mainDisplay.fill(grey)
         pygame.draw.rect(mainDisplay, darkGreen, dataRect)
@@ -287,8 +257,7 @@ def main():
         x_pose = Text(position.pose.position.x, (380,570))
         y_pose = Text(position.pose.position.y, (380, 585))
         z_pose = Text(position.pose.position.z, (380, 600))
-        arm_text = Text("ARM", (675, 470))
-        arm_text.show()
+
         position_text.show()
         x_pose.show()
         y_pose.show()
@@ -356,7 +325,6 @@ def main():
             elif event.type == pygame.KEYUP:
                 publish("stop")
         log()
-        #arming_tool()
         pygame.display.update()
         clock.tick()
         pygame.event.poll()

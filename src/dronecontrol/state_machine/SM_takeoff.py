@@ -17,7 +17,7 @@ class Takeoff(smach.State):
 
     def execute(self, userdata):
         rospy.loginfo('Executing state Takeoff')
-        return takeoff.drone_takeoff(2, 15)
+        return takeoff.drone_takeoff(1, 20)
 
 
  # define state RTL

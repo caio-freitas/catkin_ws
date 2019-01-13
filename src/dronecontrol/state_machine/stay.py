@@ -42,7 +42,7 @@ def drone_stay(duration):
         local_position_pub.publish(init_pose)
         info = 'Position: (' + str(drone_pose.pose.position.x) + ', ' + str(drone_pose.pose.position.y) + ', ' + str(drone_pose.pose.position.z) +   ')'
         rospy.loginfo(info)
-        rospy.loginfo('STAYING IN POSITION')
+        rospy.loginfo('STAYING IN POSITION FOR {} SECONDS'.format(duration))
         rospy.loginfo('TIME: ' + str(time.time() - init_time))
         rate.sleep()
 

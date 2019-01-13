@@ -49,8 +49,9 @@ class Stay(smach.State):
         smach.State.__init__(self, outcomes=['done'])
 
     def execute(self, userdata):
-        rospy.loginfo('Executing state STAY')
-        return drone_stay(10)
+        dur = 10 #in seconds
+        rospy.loginfo('Executing state STAY for {} seconds'.format(dur))
+        return drone_stay(dur)
 
 rospy.init_node('drone_state_machine', anonymous = True)
 rate = rospy.Rate(20) # 10hz

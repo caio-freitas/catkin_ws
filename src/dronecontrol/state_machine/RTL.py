@@ -5,7 +5,6 @@ import mavros_msgs
 from mavros_msgs import srv
 from geometry_msgs.msg import PoseStamped, TwistStamped
 from mavros_msgs.msg import State
-from sensor_msgs.msg import BatteryState
 import time
 
 ################# Objetos ############
@@ -23,10 +22,28 @@ def chegou(goal, actual):
     else:
         return False
 
+
+"""
+Function that brings the drone down to the (0,0,0) position and disarms it
+
+"""
+
+def chegou(goal, actual):
+    if (abs(goal.pose.position.x - actual.pose.position.x) < 0.1) and (abs(goal.pose.position.y - actual.pose.position.y) < 0.1) and (abs(goal.pose.position.z - actual.pose.position.z) < 0.10):
+        return True
+    else:
+        return False
+
+
+"""
+Function that brings the drone down to the (0,0,0) position and disarms it
+
+"""
+
 def drone_RTL():
     rate = rospy.Rate(20)
     velocity = 0.3
-    part = velocity/20.0
+    ds = velocity/20.0
     ############## Funcoes de Callback ########
     def local_callback(local):
         global drone_pose
@@ -52,37 +69,45 @@ def drone_RTL():
         goal_pose.pose.position.z = z
         local_position_pub.publish(goal_pose)
 
+    for i in range(100):
+        rate.sleep()
 
     rospy.loginfo("[ROS] SETUP CONCLUIDO")
     rate.sleep()
     height = drone_pose.pose.position.z
     rospy.loginfo('Position: (' + str(drone_pose.pose.position.x) + ', ' + str(drone_pose.pose.position.y) + ', ' + str(drone_pose.pose.position.z) + ')')
 
+    set_position(0,0,height)
+    rate.sleep()
+    rospy.loginfo('Position: (' + str(drone_pose.pose.position.x) + ', ' + str(drone_pose.pose.position.y) + ', ' + str(drone_pose.pose.position.z) + ')')
+    rospy.loginfo('Goal Position: (' + str(goal_pose.pose.position.x) + ', ' + str(goal_pose.pose.position.y) + ', ' + str(goal_pose.pose.position.z) + ')')
+
+
     while not chegou(drone_pose, goal_pose):
         rospy.loginfo('Executing State RTL')
-
-        rospy.loginfo ("[ INFO ] STARING HOME")
+        rospy.loginfo ("STARING HOME")
         set_position(0,0,height)
         rate.sleep()
 
     t=0
     set_position(0,0,0)
     rate.sleep()
-    while not chegou(drone_pose, final_position):
+
+    while not drone_pose.pose.position.z < 0.1:
         rospy.loginfo('Executing State RTL')
 
         rospy.loginfo('Height: ' + str(abs(drone_pose.pose.position.z)))
         #print drone_pose
         if not chegou(drone_pose, goal_pose):
             rospy.logwarn ('LANDING AT ' + str(velocity) + 'm/s')
-            if t < height:
-                t += part
+            if t <= height:
+                t += ds
             set_position(0,0,height - t)
             rate.sleep()
 
         else:
             if t <= height:
-                t += part
+                t += ds
                 set_position(0,0,height - t)
             else:
                 set_position(0,0,0)

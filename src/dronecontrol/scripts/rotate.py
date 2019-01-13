@@ -47,6 +47,27 @@ def set_goal_rotation(theta, (x,y,z)):
     goal_rotation.z = math.sin(theta)*z
     goal_rotation.w = math.cos(theta)
 
+def set_relative_orientation(theta, (x,y,z)):
+    global goal_rotation
+    theta = math.pi*theta/360
+    if x*x + y*y + z*z != 1:
+        norm = math.sqrt((x*x) + (y*yo) + (z*z))
+        x /= norm
+        y /= norm
+        z /= norm
+    relative_rotation = Quaternion()
+    relative_rotation.x = math.sin(theta)*x
+    relative_rotation.y = math.sin(theta)*y
+    relative_rotation.z = math.sin(theta)*z
+    relative_rotation.w = math.cos(theta)
+
+    result = Quaternion()
+    result.w = -(relative_rotation.x*goal_rotation.x) - (relative_rotation.y*goal_rotation.y) - (relative_rotation.z*goal_rotation.z) +( relative_rotation.w*goal_rotation.w)
+    result.x = relative_rotation.x*goal_rotation.w + relative_rotation.y*goal_rotation.z - relative_rotation.z*goal_rotation.y + relative_rotation.w*goal_rotation.x
+    result.y = -relative_rotation.x*goal_rotation.z + relative_rotation.y*goal_rotation.w + relative_rotation.z*goal_rotation.x + relative_rotation.w*goal_rotation.y
+    result.z = relative_rotation.x*goal_rotation.y - relative_rotation.y*goal_rotation.x + relative_rotation.z*goal_rotation.w + relative_rotation.w*goal_rotation.z
+    goal_rotation = result
+
 def get_orientation():
     global drone_pose
     theta = 360*math.acos(drone_pose.pose.orientation.w)/(math.pi)
@@ -79,7 +100,8 @@ for i in range(300):
 rospy.loginfo("[ROS] SETUP CONCLUIDO")
 
 ds = 0
-while not rospy.is_shutdown():
+init_time = time.time()
+while time.time()-init_time < 15:
     angle, tang = get_orientation()
     rospy.loginfo("DRONE ORIENTATION: {} DEGREES AROUND THE AXIS {}".format(angle, str(tang)))
     if drone_state != "OFFBOARD" or not drone_state.armed:
@@ -101,7 +123,37 @@ while not rospy.is_shutdown():
         rospy.loginfo(drone_state)
 
     set_position(0, 0, 2)
-    set_goal_rotation(ds, (0,0,1))
+    set_goal_rotation(90, (0,0,1))
+    ds += 1
+    # rospy.loginfo('ds = ' + str(ds))
+    rate.sleep()
+
+init_time = time.time()
+set_relative_orientation(45, (0,0,1))
+while time.time()-init_time < 15:
+    print("SECOND LOOP")
+    angle, tang = get_orientation()
+    rospy.loginfo("DRONE ORIENTATION: {} DEGREES AROUND THE AXIS {}".format(angle, str(tang)))
+    if drone_state != "OFFBOARD" or not drone_state.armed:
+        arm (True)
+        set_mode(custom_mode = "OFFBOARD")
+
+    print(str(drone_state.mode))
+
+    if drone_state.armed == True:
+        rospy.loginfo("DRONE ARMED")
+
+    else:
+        rospy.logwarn("DRONE DISARMED")
+
+    if drone_state.mode == "OFFBOARD":
+        rospy.loginfo('OFFBOARD mode setted')
+
+    else:
+        rospy.loginfo(drone_state)
+
+    set_position(0, 0, 2)
+    #set_relative_orientation(45, (0,0,1))
     ds += 1
     # rospy.loginfo('ds = ' + str(ds))
     rate.sleep()

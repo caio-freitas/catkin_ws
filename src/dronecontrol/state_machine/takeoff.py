@@ -22,6 +22,7 @@ def drone_takeoff(height, duration):
     rate = rospy.Rate(20) # 10hz
     velocity = 0.3
     part = velocity/20.0
+
     ############## Funcoes de Callback ########
     def state_callback(state_data):
         global drone_state
@@ -58,9 +59,16 @@ def drone_takeoff(height, duration):
         goal_pose.pose.position.z = z
         local_position_pub.publish(goal_pose)
 
+    set_position(0,0,0)
+    for i in range(300):
+        local_position_pub.publish(goal_pose)
+        rate.sleep()
+
     while not drone_state.armed:
         rospy.logwarn("ARMING DRONE")
         arm(True)
+        rate.sleep()
+
 
     init_time = time.time()
 
