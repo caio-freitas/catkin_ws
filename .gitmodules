@@ -1,0 +1,8 @@
+[submodule "src/aruco_ros"]
+	url = https://github.com/pal-robotics/aruco_ros
+[submodule "src/mavros"]
+	url = https://github.com/mavlink/mavros
+[submodule "src/vicon_bridge"]
+	url = https://github.com/ethz-asl/vicon_bridge
+[submodule "src/vision_opencv"]
+	url = https://github.com/ros-perception/vision_opencv
