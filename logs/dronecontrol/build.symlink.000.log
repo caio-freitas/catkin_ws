@@ -1,0 +1,4 @@
+Symlinking /home/caio/catkin_ws/devel/lib/pkgconfig/dronecontrol.pc
+Symlinking /home/caio/catkin_ws/devel/lib/dronecontrol/integracao_controle.cpp
+Symlinking /home/caio/catkin_ws/devel/share/dronecontrol/cmake/dronecontrolConfig-version.cmake
+Symlinking /home/caio/catkin_ws/devel/share/dronecontrol/cmake/dronecontrolConfig.cmake

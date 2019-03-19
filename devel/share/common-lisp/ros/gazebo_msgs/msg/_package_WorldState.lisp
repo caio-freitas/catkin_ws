@@ -1,12 +1,1 @@
-(cl:in-package gazebo_msgs-msg)
-(cl:export '(HEADER-VAL
-          HEADER
-          NAME-VAL
-          NAME
-          POSE-VAL
-          POSE
-          TWIST-VAL
-          TWIST
-          WRENCH-VAL
-          WRENCH
-))
+/home/caio/catkin_ws/devel/.private/gazebo_msgs/share/common-lisp/ros/gazebo_msgs/msg/_package_WorldState.lisp

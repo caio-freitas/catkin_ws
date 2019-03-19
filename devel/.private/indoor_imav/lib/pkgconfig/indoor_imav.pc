@@ -1,0 +1,8 @@
+prefix=/home/caio/catkin_ws/devel/.private/indoor_imav
+
+Name: indoor_imav
+Description: Description of indoor_imav
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/caio/catkin_ws/devel/.private/indoor_imav/lib 
+Requires: 

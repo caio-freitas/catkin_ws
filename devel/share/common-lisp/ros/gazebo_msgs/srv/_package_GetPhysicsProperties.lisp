@@ -1,16 +1,1 @@
-(cl:in-package gazebo_msgs-srv)
-(cl:export '(TIME_STEP-VAL
-          TIME_STEP
-          PAUSE-VAL
-          PAUSE
-          MAX_UPDATE_RATE-VAL
-          MAX_UPDATE_RATE
-          GRAVITY-VAL
-          GRAVITY
-          ODE_CONFIG-VAL
-          ODE_CONFIG
-          SUCCESS-VAL
-          SUCCESS
-          STATUS_MESSAGE-VAL
-          STATUS_MESSAGE
-))
+/home/caio/catkin_ws/devel/.private/gazebo_msgs/share/common-lisp/ros/gazebo_msgs/srv/_package_GetPhysicsProperties.lisp

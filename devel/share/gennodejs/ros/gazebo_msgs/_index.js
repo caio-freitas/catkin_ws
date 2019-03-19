@@ -1,7 +1,1 @@
-
-"use strict";
-
-module.exports = {
-  msg: require('./msg/_index.js'),
-  srv: require('./srv/_index.js')
-};
+/home/caio/catkin_ws/devel/.private/gazebo_msgs/share/gennodejs/ros/gazebo_msgs/_index.js

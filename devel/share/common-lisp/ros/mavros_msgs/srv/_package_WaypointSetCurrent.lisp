@@ -1,6 +1,1 @@
-(cl:in-package mavros_msgs-srv)
-(cl:export '(WP_SEQ-VAL
-          WP_SEQ
-          SUCCESS-VAL
-          SUCCESS
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/srv/_package_WaypointSetCurrent.lisp

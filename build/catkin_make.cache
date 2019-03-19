@@ -1,2 +1,0 @@
-aruco_ros/aruco:dronecontrol:gazebo_ros_pkgs/gazebo_dev:gazebo_ros_pkgs/gazebo_msgs:gazebo_ros_pkgs/gazebo_plugins:gazebo_ros_pkgs/gazebo_ros:gazebo_ros_pkgs/gazebo_ros_control:gazebo_ros_pkgs/gazebo_ros_pkgs:mavros/libmavconn:mavros/mavros:mavros/mavros_extras:mavros/mavros_msgs:missions:opencvtest:simulation:vicon_bridge:vision_opencv/cv_bridge:vision_opencv/image_geometry:vision_opencv/opencv_tests:vision_opencv/vision_opencv
--DCATKIN_DEVEL_PREFIX=/home/caio/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/caio/catkin_ws/install -G Unix Makefiles

@@ -1,4 +1,1 @@
-(cl:in-package gazebo_msgs-srv)
-(cl:export '(JOINT_NAME-VAL
-          JOINT_NAME
-))
+/home/caio/catkin_ws/devel/.private/gazebo_msgs/share/common-lisp/ros/gazebo_msgs/srv/_package_JointRequest.lisp

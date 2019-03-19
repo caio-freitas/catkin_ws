@@ -1,8 +1,1 @@
-(cl:in-package mavros_msgs-srv)
-(cl:export '(FORCE_PULL-VAL
-          FORCE_PULL
-          SUCCESS-VAL
-          SUCCESS
-          PARAM_RECEIVED-VAL
-          PARAM_RECEIVED
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/srv/_package_ParamPull.lisp

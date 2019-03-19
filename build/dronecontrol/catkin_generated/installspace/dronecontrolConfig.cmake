@@ -68,7 +68,7 @@ set(dronecontrol_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(dronecontrol_SOURCE_PREFIX /home/caio/catkin_ws/src/dronecontrol)
-  set(dronecontrol_DEVEL_PREFIX /home/caio/catkin_ws/devel)
+  set(dronecontrol_DEVEL_PREFIX /home/caio/catkin_ws/devel/.private/dronecontrol)
   set(dronecontrol_INSTALL_PREFIX "")
   set(dronecontrol_PREFIX ${dronecontrol_DEVEL_PREFIX})
 else()

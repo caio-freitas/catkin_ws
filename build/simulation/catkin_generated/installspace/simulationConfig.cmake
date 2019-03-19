@@ -68,7 +68,7 @@ set(simulation_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(simulation_SOURCE_PREFIX /home/caio/catkin_ws/src/simulation)
-  set(simulation_DEVEL_PREFIX /home/caio/catkin_ws/devel)
+  set(simulation_DEVEL_PREFIX /home/caio/catkin_ws/devel/.private/simulation)
   set(simulation_INSTALL_PREFIX "")
   set(simulation_PREFIX ${simulation_DEVEL_PREFIX})
 else()

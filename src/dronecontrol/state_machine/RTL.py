@@ -114,8 +114,8 @@ def drone_RTL():
             rate.sleep()
 
     print("\nCHEGUEEEI\n")
-    rospy.logwarn("DESARMANDO DRONE")
-    arm(False)
+    # rospy.logwarn("DESARMANDO DRONE")
+    # arm(False)
     return "succeeded"
 
 if __name__ == "__main__":

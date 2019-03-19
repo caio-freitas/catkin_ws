@@ -1,0 +1,5 @@
+/home/caio/catkin_ws/build/gazebo_plugins/setup_custom_pythonpath.sh: 5: exec: /home/caio/catkin_ws/src/gazebo_ros_pkgs/gazebo_plugins/cfg/CameraSynchronizer.cfg: Permission denied
+make[2]: *** [/home/caio/catkin_ws/devel/.private/gazebo_plugins/include/gazebo_plugins/CameraSynchronizerConfig.h] Error 126
+make[1]: *** [CMakeFiles/gazebo_plugins_gencfg.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

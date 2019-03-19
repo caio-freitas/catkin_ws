@@ -1,2 +1,1 @@
-# Prepend cmake modules from source directory to the cmake module path
-list(INSERT CMAKE_MODULE_PATH 0 "/home/caio/catkin_ws/src/mavros/libmavconn/cmake/Modules")
+/home/caio/catkin_ws/devel/.private/libmavconn/share/libmavconn/cmake/libmavconn-extras.cmake

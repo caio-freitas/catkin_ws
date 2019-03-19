@@ -1,8 +1,1 @@
-(cl:in-package gazebo_msgs-msg)
-(cl:export '(NAME-VAL
-          NAME
-          POSE-VAL
-          POSE
-          TWIST-VAL
-          TWIST
-))
+/home/caio/catkin_ws/devel/.private/gazebo_msgs/share/common-lisp/ros/gazebo_msgs/msg/_package_ModelStates.lisp

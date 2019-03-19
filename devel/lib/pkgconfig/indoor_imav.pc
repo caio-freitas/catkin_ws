@@ -1,0 +1,1 @@
+/home/caio/catkin_ws/devel/.private/indoor_imav/lib/pkgconfig/indoor_imav.pc

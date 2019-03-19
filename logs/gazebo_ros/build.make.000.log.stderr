@@ -1,0 +1,4 @@
+/home/caio/catkin_ws/build/gazebo_ros/setup_custom_pythonpath.sh: 5: exec: /home/caio/catkin_ws/src/gazebo_ros_pkgs/gazebo_ros/cfg/Physics.cfg: Permission denied
+make[2]: *** [/home/caio/catkin_ws/devel/.private/gazebo_ros/include/gazebo_ros/PhysicsConfig.h] Error 126
+make[1]: *** [CMakeFiles/gazebo_ros_gencfg.dir/all] Error 2
+make: *** [all] Error 2

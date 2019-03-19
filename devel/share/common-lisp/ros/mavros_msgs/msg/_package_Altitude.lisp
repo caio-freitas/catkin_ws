@@ -1,16 +1,1 @@
-(cl:in-package mavros_msgs-msg)
-(cl:export '(HEADER-VAL
-          HEADER
-          MONOTONIC-VAL
-          MONOTONIC
-          AMSL-VAL
-          AMSL
-          LOCAL-VAL
-          LOCAL
-          RELATIVE-VAL
-          RELATIVE
-          TERRAIN-VAL
-          TERRAIN
-          BOTTOM_CLEARANCE-VAL
-          BOTTOM_CLEARANCE
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/msg/_package_Altitude.lisp

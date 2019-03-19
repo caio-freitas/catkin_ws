@@ -1,0 +1,6 @@
+gazebo_ros_pkgs/gazebo_ros_control
+/home/caio/catkin_ws/devel/.private/gazebo_ros_control/lib/libdefault_robot_hw_sim.so /home/caio/catkin_ws/devel/lib/libdefault_robot_hw_sim.so
+/home/caio/catkin_ws/devel/.private/gazebo_ros_control/lib/libgazebo_ros_control.so /home/caio/catkin_ws/devel/lib/libgazebo_ros_control.so
+/home/caio/catkin_ws/devel/.private/gazebo_ros_control/lib/pkgconfig/gazebo_ros_control.pc /home/caio/catkin_ws/devel/lib/pkgconfig/gazebo_ros_control.pc
+/home/caio/catkin_ws/devel/.private/gazebo_ros_control/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig-version.cmake /home/caio/catkin_ws/devel/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig-version.cmake
+/home/caio/catkin_ws/devel/.private/gazebo_ros_control/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig.cmake /home/caio/catkin_ws/devel/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig.cmake

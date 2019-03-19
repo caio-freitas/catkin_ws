@@ -1,14 +1,1 @@
-(cl:in-package mavros_msgs-srv)
-(cl:export '(FILE_PATH-VAL
-          FILE_PATH
-          OFFSET-VAL
-          OFFSET
-          SIZE-VAL
-          SIZE
-          DATA-VAL
-          DATA
-          SUCCESS-VAL
-          SUCCESS
-          R_ERRNO-VAL
-          R_ERRNO
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/srv/_package_FileRead.lisp

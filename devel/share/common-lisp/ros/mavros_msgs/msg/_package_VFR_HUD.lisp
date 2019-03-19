@@ -1,16 +1,1 @@
-(cl:in-package mavros_msgs-msg)
-(cl:export '(HEADER-VAL
-          HEADER
-          AIRSPEED-VAL
-          AIRSPEED
-          GROUNDSPEED-VAL
-          GROUNDSPEED
-          HEADING-VAL
-          HEADING
-          THROTTLE-VAL
-          THROTTLE
-          ALTITUDE-VAL
-          ALTITUDE
-          CLIMB-VAL
-          CLIMB
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/msg/_package_VFR_HUD.lisp

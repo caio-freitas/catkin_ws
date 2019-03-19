@@ -1,8 +1,1 @@
-(cl:in-package mavros_msgs-msg)
-(cl:export '(NAME-VAL
-          NAME
-          TYPE-VAL
-          TYPE
-          SIZE-VAL
-          SIZE
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/msg/_package_FileEntry.lisp

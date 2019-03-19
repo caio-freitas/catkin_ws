@@ -1,6 +1,1 @@
-(cl:in-package mavros_msgs-msg)
-(cl:export '(INTEGER-VAL
-          INTEGER
-          REAL-VAL
-          REAL
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/msg/_package_ParamValue.lisp

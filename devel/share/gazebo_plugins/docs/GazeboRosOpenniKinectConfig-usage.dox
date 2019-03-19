@@ -1,7 +1,1 @@
-\subsubsection usage Usage
-\verbatim
-<node name="gazebo_ros_openni_kinect" pkg="gazebo_plugins" type="gazebo_ros_openni_kinect">
-  <param name="imager_rate" type="double" value="2.0" />
-</node>
-\endverbatim
-
+/home/caio/catkin_ws/devel/.private/gazebo_plugins/share/gazebo_plugins/docs/GazeboRosOpenniKinectConfig-usage.dox

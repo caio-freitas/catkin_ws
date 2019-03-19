@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target integracao_controle.cpp[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/integracao_controle.cpp.dir/src/integracao_controle.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/caio/catkin_ws/devel/.private/dronecontrol/lib/dronecontrol/integracao_controle.cpp[0m
+[100%] Built target integracao_controle.cpp

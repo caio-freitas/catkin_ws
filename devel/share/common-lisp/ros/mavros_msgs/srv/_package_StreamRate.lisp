@@ -1,8 +1,1 @@
-(cl:in-package mavros_msgs-srv)
-(cl:export '(STREAM_ID-VAL
-          STREAM_ID
-          MESSAGE_RATE-VAL
-          MESSAGE_RATE
-          ON_OFF-VAL
-          ON_OFF
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/srv/_package_StreamRate.lisp

@@ -1,8 +1,0 @@
-prefix=/home/caio/catkin_ws/devel
-
-Name: missions
-Description: Description of missions
-Version: 1.0.0
-Cflags: 
-Libs: -L/home/caio/catkin_ws/devel/lib 
-Requires: 

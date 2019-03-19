@@ -1,0 +1,8 @@
+prefix=/home/caio/catkin_ws/devel/.private/dronecontrol
+
+Name: dronecontrol
+Description: Description of dronecontrol
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/caio/catkin_ws/devel/.private/dronecontrol/lib 
+Requires: 

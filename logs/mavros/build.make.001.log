@@ -1,0 +1,4 @@
+[ 27%] Built target mavros
+[ 32%] Built target gcs_bridge
+[ 37%] Built target mavros_node
+[100%] Built target mavros_plugins

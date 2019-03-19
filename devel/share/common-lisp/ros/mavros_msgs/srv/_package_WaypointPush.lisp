@@ -1,10 +1,1 @@
-(cl:in-package mavros_msgs-srv)
-(cl:export '(START_INDEX-VAL
-          START_INDEX
-          WAYPOINTS-VAL
-          WAYPOINTS
-          SUCCESS-VAL
-          SUCCESS
-          WP_TRANSFERED-VAL
-          WP_TRANSFERED
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/srv/_package_WaypointPush.lisp

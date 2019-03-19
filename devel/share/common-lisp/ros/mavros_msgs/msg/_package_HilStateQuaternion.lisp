@@ -1,18 +1,1 @@
-(cl:in-package mavros_msgs-msg)
-(cl:export '(HEADER-VAL
-          HEADER
-          ORIENTATION-VAL
-          ORIENTATION
-          ANGULAR_VELOCITY-VAL
-          ANGULAR_VELOCITY
-          LINEAR_ACCELERATION-VAL
-          LINEAR_ACCELERATION
-          LINEAR_VELOCITY-VAL
-          LINEAR_VELOCITY
-          GEO-VAL
-          GEO
-          IND_AIRSPEED-VAL
-          IND_AIRSPEED
-          TRUE_AIRSPEED-VAL
-          TRUE_AIRSPEED
-))
+/home/caio/catkin_ws/devel/.private/mavros_msgs/share/common-lisp/ros/mavros_msgs/msg/_package_HilStateQuaternion.lisp
