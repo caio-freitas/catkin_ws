@@ -1,0 +1,24 @@
+[35m[1mScanning dependencies of target servo_state_publisher[0m
+[  5%] [32mBuilding CXX object CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o[0m
+[35m[1mScanning dependencies of target mavros_extras[0m
+[ 11%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/adsb.cpp.o[0m
+[35m[1mScanning dependencies of target copter_visualization[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/copter_visualization.dir/src/copter_visualization.cpp.o[0m
+[ 22%] [32m[1mLinking CXX executable /home/caio/catkin_ws/devel/.private/mavros_extras/lib/mavros_extras/servo_state_publisher[0m
+[ 22%] Built target servo_state_publisher
+[ 27%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o[0m
+[ 33%] [32m[1mLinking CXX executable /home/caio/catkin_ws/devel/.private/mavros_extras/lib/mavros_extras/copter_visualization[0m
+[ 33%] Built target copter_visualization
+[ 38%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/debug_value.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/fake_gps.cpp.o[0m
+[ 55%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o[0m
+[ 61%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/obstacle_distance.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/odom.cpp.o[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/rangefinder.cpp.o[0m
+[ 83%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o[0m
+[ 88%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o[0m
+[ 94%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/caio/catkin_ws/devel/.private/mavros_extras/lib/libmavros_extras.so[0m
+[100%] Built target mavros_extras

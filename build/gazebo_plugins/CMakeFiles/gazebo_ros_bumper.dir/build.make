@@ -116,9 +116,6 @@ gazebo_ros_bumper_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /opt/ros/kinetic/lib/libnodeletlib.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libuuid.so
@@ -191,9 +188,6 @@ gazebo_ros_bumper_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /opt/ros/kinetic/lib/libnodeletlib.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /usr/lib/x86_64-linux-gnu/libuuid.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_bumper.so: /opt/ros/kinetic/lib/libbondcpp.so

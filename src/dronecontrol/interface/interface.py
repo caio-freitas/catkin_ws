@@ -322,6 +322,8 @@ def main():
                     yawRightButton.publishMsg()
                 else:
                     yawRightButton.show()
+                if event.key == pygame.K_j:
+                    publish("disarm")
             elif event.type == pygame.KEYUP:
                 publish("stop")
         log()

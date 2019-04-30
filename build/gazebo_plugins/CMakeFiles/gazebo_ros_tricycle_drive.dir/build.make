@@ -117,9 +117,6 @@ gazebo_ros_tricycle_drive_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /opt/ros/kinetic/lib/libnodeletlib.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libuuid.so
@@ -172,9 +169,6 @@ gazebo_ros_tricycle_drive_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /opt/ros/kinetic/lib/libnodeletlib.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /usr/lib/x86_64-linux-gnu/libuuid.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_tricycle_drive.so: /opt/ros/kinetic/lib/libbondcpp.so

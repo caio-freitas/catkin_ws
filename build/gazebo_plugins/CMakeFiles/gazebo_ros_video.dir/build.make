@@ -110,9 +110,6 @@ gazebo_ros_video_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /opt/ros/kinetic/lib/libnodeletlib.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libuuid.so
@@ -171,9 +168,7 @@ gazebo_ros_video_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /opt/ros/kinetic/lib/libnodeletlib.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libuuid.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /opt/ros/kinetic/lib/libbondcpp.so
@@ -218,19 +213,6 @@ gazebo_ros_video_EXTERNAL_OBJECTS =
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /opt/ros/kinetic/lib/libroscpp_serialization.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /opt/ros/kinetic/lib/librostime.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /opt/ros/kinetic/lib/libcpp_common.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so: CMakeFiles/gazebo_ros_video.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/caio/catkin_ws/build/gazebo_plugins/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library /home/caio/catkin_ws/devel/.private/gazebo_plugins/lib/libgazebo_ros_video.so"
